@@ -11,7 +11,6 @@ app.use(express.static("Public"));
 app.get('/',function(req,res)
 {
   res.sendFile(__dirname+"/index.html");
-  // res.send("Hello");
 })
 
 app.post("/",function(req,res)
@@ -32,7 +31,6 @@ app.post("/",function(req,res)
       const description = weatherData.weather[0].description;
       const iconCode = weatherData.weather[0].icon;
       const imageUrl = "http://openweathermap.org/img/wn/"+iconCode+"@2x.png";
-    // for every .get() request there can be only one res.send() so to wite multiple lines or data we first use res.write()  and then call res.send()
       res.write("<body style='background:lightblue;margin:0;'><body>");
       res.write("<div style='background:#4666;'>");
       res.write("<center><h1>Weather Statistics of : "+ query + "<h1><center>");
@@ -40,13 +38,7 @@ app.post("/",function(req,res)
       res.write("<center>Temperature is  : "+temperature+"<center>");
       res.write("<center><img src ="+imageUrl+"></center>");
       res.write("</div>")
-      // res.write("<p style='text-align:center; font-size:2rem;'>The weather currently in "+query+" is " + description+"</p>");
-      // res.write("<h1 style='text-align:center;font-size:2rem;'>The temperature in "+query+ " is " + temperature +" degree celsius</h1>")
-      // res.write("<center><img src ="+imageUrl+"></center>");
       res.send();
-      // console.log(weatherData);
-      // console.log("temperature is ="+ temperature+" degree celsius");
-
     })
 
   });
@@ -56,34 +48,3 @@ app.listen(3000,function()
 {
   console.log("Server is running at port number 3000");
 });
-
-
-
-
-// const query = "London"
-// const apiKey ="e834ff7827234ed79ec53206cdc79ffa"
-// const units = "metric"
-// const url = "https://api.openweathermap.org/data/2.5/weather?q="+query+"&appid="+apiKey+"&units="+units;
-// https.get(url,function(response)
-// {
-//   console.log(response.statusCode);
-//   // JSON.parse() is used to convert any data into Javascript object notation format
-//   //JSON.Stringify() for converting Javascript objects into json formats
-//   response.on("data",function(data)
-//   {
-//     const weatherData = JSON.parse(data);
-//     const temperature= weatherData.main.temp;
-//     const description = weatherData.weather[0].description;
-//     const iconCode = weatherData.weather[0].icon;
-//     const imageUrl = "http://openweathermap.org/img/wn/"+iconCode+"@2x.png";
-//   // for every .get() request there can be only one res.send() so to wite multiple lines or data we first use res.write()  and then call res.send()
-//     res.write("<p>The weather is currently " + description+"</p>");
-//     res.write("<h1>The temperature in London is " + temperature +" sdegree celsius</h1>")
-//     res.write("<img src ="+imageUrl+">");
-//     res.send();
-//     // console.log(weatherData);
-//     // console.log("temperature is ="+ temperature+" degree celsius");
-//
-//   })
-//
-// });
